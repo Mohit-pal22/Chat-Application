@@ -5,7 +5,7 @@ import ChatArea from "./components/ChatArea";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
-const socket = io("http://localhost:5000");
+const socket = io(process.env.REACT_APP_API_URL);
 
 function Home() {
     const { selectedChat, user } = useSelector(state => state.userReducer);

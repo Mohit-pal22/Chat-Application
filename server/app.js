@@ -5,17 +5,20 @@ const chatRouter = require("./routers/chatRouter");
 const messageRouter = require("./routers/messageRouter");
 const http = require("http");
 const cors = require("cors");
+const dotenv = require('dotenv');
+
+dotenv.config({path: './.env'});
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.CLIENT_URL,
   credentials: true
 }));
 
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.CLIENT_URL,
         methods: ['GET', 'POST']
     }
 })
